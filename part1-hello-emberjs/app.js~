@@ -1,0 +1,11 @@
+var app = Ember.Application.create({
+	LOG_TRANSITIONS: true
+});
+
+app.ApplicationController = Ember.Controller.extend({
+  firstName: "Trek",
+  lastName: "Glowacki"
+});
+
+
+window.App = app;
