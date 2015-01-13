@@ -1,0 +1,50 @@
+<doctype html>
+<html>
+    <head>
+        <title>Part 4 - Computed Properties / Observer</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+	<script type="text/x-handlebars">
+      {{#link-to 'persons'}} Persons {{/link-to}}
+	  {{outlet}}
+      
+	</script>
+
+    <script type="text/x-handlebars" data-template-name="persons">
+      <br>
+      {{#each person in model}}
+        {{#link-to 'person' person}} {{person.firstName}} - {{person.lastName}} {{/link-to}}
+        <br>
+      {{/each}}
+      {{outlet}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="person">
+      {{model.firstName}}
+      Firstname: {{input type="text" value=model.firstName }}
+      Lastname:  {{input type="text" value=model.lastName }}
+      <br>
+      Fullname:  {{model.fullName}}
+      <button {{action save}}> Save </button>
+
+      {{#if model.isValid}}
+           <div style="background-color: green">Everything fine!<div>
+      {{else}}
+           <div style="background-color: red">Something is missing!<div>
+      {{/if}}
+    </script>
+
+
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+    <script src="bower_components/ember/ember.js"></script>
+    <script src="app.js"></script>
+    </body>
+</html>

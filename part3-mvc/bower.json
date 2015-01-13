@@ -1,0 +1,26 @@
+{
+  "name": "part1-hello-emberjs",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ruperteder/emberjs-training",
+  "authors": [
+    "Rupert Eder <rupert.eder@redvalley-software.com>"
+  ],
+  "description": "A realy simple ember.js example",
+  "main": "index.html",
+  "keywords": [
+    "ember.js"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ember": "~1.9.1",
+    "bootstrap": "~3.3.1"
+  }
+}

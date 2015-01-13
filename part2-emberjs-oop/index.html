@@ -1,0 +1,30 @@
+<doctype html>
+<html>
+    <head>
+        <title>Part 2 - EmberJS OOP</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+	<script type="text/x-handlebars">
+	  <div>
+	    Hello {{currentPerson.firstName}} {{currentPerson.lastName}}!
+        <br>
+        My fullname is {{fullName}}
+        <br>
+        My ID is {{currentPerson.id}}
+        <br>
+        Errors: {{currentPerson.errors}}
+	  </div>
+	</script>
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+    <script src="bower_components/ember/ember.js"></script>
+    <script src="app.js"></script>
+    </body>
+</html>
