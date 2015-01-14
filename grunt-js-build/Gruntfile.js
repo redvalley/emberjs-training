@@ -28,11 +28,27 @@ module.exports = function(grunt) {
 		
 		concat: {
 		    dist: {
-			src:['**/*.js', '!Gruntfile.js', '!templates.js', '!bower_components/**/*.js', '!node_modules/**/*.js'],
-			dest:'app-concat.js',
+			src:['**/*.js', '!Gruntfile.js', '!templates.js', '!bower_components/**/*.js', '!node_modules/**/*.js', '!test/**/*.js'],
+			dest:'app-build.js',
 			filter: 'isFile'
 		    }
 		},
+
+		uglify: {
+		    options: {
+		      mangle: true
+		    },
+		    prod: {
+		      files: {
+		        'app.min.js': ['bower_components/jquery/dist/jquery.js',
+							   'bower_components/bootstrap/dist/js/bootstrap.js',
+							   'bower_components/handlebars/handlebars.js',
+							   'bower_components/ember/ember.js',
+							   'templates.js',
+						       'app-build.js']
+		      }
+		    }
+  		},
 
 		watch: {
 		    scripts: {
@@ -44,7 +60,36 @@ module.exports = function(grunt) {
 		    }
 		},
 
-		clean: ['app-concat.js', 'templates.js']
+		karma: {
+			single:{
+				options:{
+					frameworks: ['qunit'],
+					reporters:['progress', 'junit'],
+					files:[
+					'bower_components/jquery/dist/jquery.js',
+					'bower_components/bootstrap/dist/js/bootstrap.js',
+					'bower_components/handlebars/handlebars.js',
+					'bower_components/ember/ember.js',
+					'templates.js',
+					'app-build.js',
+					'test/**/*.js']
+				},
+				singleRun: true,
+				autowatch: false,
+				browsers: ['PhantomJS']
+			}
+		},
+
+		connect: {
+          server: {
+            options: {
+              port: 9001,
+              base: '.'
+            }
+          }
+        },
+
+		clean: ['app-build.js', 'app.min.js', 'templates.js']
 	
 	});
 	
@@ -52,6 +97,12 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.registerTask('default', ['clean', 'emberTemplates', 'concat', 'watch']);
+	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-karma');
+
+	grunt.registerTask('test',['clean','emberTemplates', 'concat', 'karma:single']);
+	grunt.registerTask('default', ['clean', 'emberTemplates', 'concat', 'connect', 'watch']);
+	grunt.registerTask('prod', ['clean', 'emberTemplates', 'concat', 'uglify']);
 	
 }
