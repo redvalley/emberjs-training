@@ -1,0 +1,8 @@
+
+
+<br>
+{{#each person in model}}
+{{#link-to 'person' person}} {{person.firstName}} - {{person.lastName}} {{/link-to}}
+<br>
+{{/each}}
+{{outlet}}

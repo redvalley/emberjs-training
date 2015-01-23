@@ -1,0 +1,13 @@
+
+Firstname: {{input type="text" value=model.firstName }}
+Lastname:  {{input type="text" value=model.lastName }}
+
+<br>
+Fullname:  {{model.fullName}}
+<button {{action save}}> Save </button>
+
+{{#if model.isValid}}
+     <div style="background-color: green">Everything fine!<div>
+{{else}}
+     <div style="background-color: red">Something is missing!<div>
+{{/if}}
